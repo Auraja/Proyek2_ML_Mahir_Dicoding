@@ -46,28 +46,53 @@ Berdasaarkan pengolahan data lebih lanjut hasil menunjukan bahwa rating dalam da
 
 ## Data Preparation
 
-Dalam proyek ini, dilakukan beberapa tahapan persiapan data untuk mempersiapkan data untuk analisis dan pemrosesan selanjutnya. Pertama, dilakukan penggabungan UserId dari dua DataFrame yang berbeda, yaitu ratings dan tags, untuk mendapatkan satu set UserId yang unik. Selanjutnya, data yang telah digabungkan tersebut diolah dengan menghapus data duplikat dan mengurutkannya dengan baik untuk memastikan keteraturan. Setelah itu, dilakukan pencetakan jumlah total user yang ada dalam data setelah pengolahan. Selanjutnya, beberapa DataFrame yang terpisah, seperti links, movies, ratings, dan tags, digabungkan menjadi satu DataFrame yang disebut movie untuk memudahkan analisis dan pemrosesan data lebih lanjut. Penggabungan DataFrame ini memungkinkan informasi terkait dengan film, seperti link, judul, rating, dan tag, digabungkan ke dalam satu entitas yang lengkap, memfasilitasi analisis yang lebih menyeluruh. Tahapan-tahapan ini diperlukan untuk mempersiapkan data dengan baik sebelum dilakukan analisis dan pemodelan lanjutan dalam proyek ini.
-
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+Dalam proyek ini, dilakukan beberapa tahapan persiapan data untuk mempersiapkan data untuk analisis dan pemrosesan selanjutnya. 
+- Dilakukan penggabungan dengan dataset lain kemudian data gabungan dibersihakan jika terjadi data yang tidak normal dilakukan secara terus menerus hingga data bersih.
+- Mengkonversi data yang sudah bersih yang sudah digabungkan menjadi list, data yang dipilih untuk di konversi menjadi list adalah movieId, title, dan genres.
+- Data yang sudah di konversikan menjadi list dibuat kamus supaya mempermudah model dalam membacanya.
+- TF_IDF juga dilakukan pada preparation data yang sudah menjadi list sehingga data diubah menjadi bentuk matriks yang akan digunakan dalam model.
+  
+semua tahapan diatas dilakukan supaya data dapat dengan mudah di jalankan dengan model yang akan digunakan dan mendapatkan hasil yang cukup baik dan efisien.
 
 ## Modeling
-Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menyajikan dua solusi rekomendasi dengan algoritma yang berbeda.
-- Menjelaskan kelebihan dan kekurangan dari solusi/pendekatan yang dipilih.
+Model yang digunakan pada proyek kali ini adalah Content Based Filtering dengan menghitung derajat kesamaan dalam data yang sudah dijadikan tf_idf matrix
+Hasil dari Content Based :
+Dimasa lalu user yang menyukai film dibawah ini
+|    |   id       |  movie_name                  |  genre         |   
+|---:|-----------:|-----------------------------:|----------------|
+|  8 |         17 | Sense and Sensibility (1995) | Drama\|Romance | 
+
+Mendapatkan hasil top 5 film rekomendasi untuk user yang menyukai film tersebut yaitu :
+|            |    movie_name                                     |  genre         |   
+|-----------:|--------------------------------------------------:|---------------:|
+|      0     | Widow of St. Pierre, The (Veuve de Saint-Pierr... | Drama\|Romance |  
+|      1     |                            Far from Heaven (2002) | Drama\|Romance |  
+|      2     |                          Nicholas Nickleby (2002) | Drama\|Romance |  
+|      3     |                                        Gia (1998) | Drama\|Romance |  
+|      4     |               Talk to Her (Hable con Ella) (2002) | Drama\|Romance |  
+
+Berdasarkan hasil rekomendasi sistem terhadap user yang menyukai film Sense and Sensibility (1995), sistem akan menampilkan film yang sejenis dilihat dari genre filmnya yang sama.
 
 ## Evaluation
-Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
+Matriks yang digunakan dalam proyek sistem rekomendasi film ini adalah matriks cosine similiarity. Matriks cosine similarity merupakan representasi matematis dari kesamaan antara dua dokumen (dalam hal ini, film) berdasarkan cosine similarity. Matriks ini dihasilkan dengan menghitung cosine similarity antara setiap pasangan film dalam dataset film.
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+Peran dalam Content-Based Filtering:
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+Dalam sistem rekomendasi film berbasis content-based, matriks cosine similarity digunakan untuk:
+- Menemukan film yang serupa: Film dengan nilai cosine similarity tinggi dianggap memiliki konten yang serupa dan direkomendasikan kepada pengguna.
+- Memprediksi rating pengguna: Nilai cosine similarity dapat digunakan untuk memprediksi kemungkinan pengguna menyukai film yang belum pernah ditontonnya.
+Rumus:
 
-**---Ini adalah bagian akhir laporan---**
+Cosine similarity dihitung dengan rumus berikut:
+
+$$cosine_similarity(x, y) = (x * y) / ||x|| * ||y||$$
+dimana:
+- x dan y adalah vektor yang mewakili dua film.
+- x * y adalah perkalian dot antara vektor x dan y.
+- ||x|| dan ||y|| adalah norma Euclidean dari vektor x dan y.
+
+Proyek ini dinilai berhasil dalam membuat rekomendasi film kepada user menggunakan data masa lalu dengan menggunakan matrix cosine similiarity, dengan mengetahui bahwa user menyukai suatu film maka sistem dapat merekomendasikan film film yang memiliki kesamaan dengan film yang disukai user tersebut.
 
 ## References
 [1] Adomavicius, G., & Tuzhilin, A. (2005). Toward the next generation of recommender systems: A survey of the state-of-the-art and possible extensions. IEEE transactions on knowledge and data engineering, 17(6), 734-749.                    
