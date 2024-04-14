@@ -2,8 +2,8 @@
 
 ## Project Overview
    
-Sistem Rekomendasi Movie Berbasis Content-Based
-Ledakan Konten Film: Industri film mengalami pertumbuhan pesat dalam beberapa tahun terakhir, menghasilkan banyak film baru di berbagai genre dan platform. Hal ini, meskipun menyenangkan bagi pecinta film, dapat membuat pengguna kesulitan menemukan film yang sesuai dengan minat mereka. Adomavicius dan Tuzhilin (2005) menyatakan bahwa "tantangan utama dalam sistem rekomendasi adalah membantu pengguna menemukan informasi yang relevan dalam lautan data yang berlimpah" ([1]).
+Sistem Rekomendasi Movie Berbasis Content-Based                           
+Ledakan Konten Film Industri film mengalami pertumbuhan pesat dalam beberapa tahun terakhir, menghasilkan banyak film baru di berbagai genre dan platform. Hal ini, meskipun menyenangkan bagi pecinta film, dapat membuat pengguna kesulitan menemukan film yang sesuai dengan minat mereka. Adomavicius dan Tuzhilin (2005) menyatakan bahwa "tantangan utama dalam sistem rekomendasi adalah membantu pengguna menemukan informasi yang relevan dalam lautan data yang berlimpah" ([1]).
 
 Keterbatasan Sistem Rekomendasi Saat Ini: Sistem rekomendasi film yang ada saat ini, seperti Netflix dan Rotten Tomatoes, banyak yang menggunakan metode collaborative filtering. Sistem ini merekomendasikan film berdasarkan preferensi pengguna lain dengan selera yang mirip. Namun, collaborative filtering memiliki beberapa keterbatasan:
 - Cold start problem: Sistem tidak dapat memberikan rekomendasi yang akurat bagi pengguna baru karena belum memiliki data preferensi mereka.
@@ -74,29 +74,29 @@ Berdasaarkan pengolahan data lebih lanjut hasil menunjukan bahwa rating dalam da
 Dalam proyek ini, dilakukan beberapa tahapan persiapan data untuk mempersiapkan data untuk analisis dan pemrosesan selanjutnya. 
 
 1. Penggabungan Seluruh MovieID dan UserID:
-- Penggunaan fungsi np.concatenate() untuk menggabungkan array yang berbeda menjadi satu.
-- Penggunaan fungsi np.sort() untuk mengurutkan array.
-- Penggunaan fungsi np.unique() untuk menghapus data yang duplikat.
+- Penggunaan fungsi ```np.concatenate()``` untuk menggabungkan array yang berbeda menjadi satu.
+- Penggunaan fungsi ```np.sort()``` untuk mengurutkan array.
+- Penggunaan fungsi ```np.unique()``` untuk menghapus data yang duplikat.
 
 2. Penggabungan DataFrame dengan Metode Join:
-- Menggunakan fungsi pd.merge() untuk menggabungkan dataframe berdasarkan kolom kunci tertentu.
+- Menggunakan fungsi ```pd.merge()``` untuk menggabungkan dataframe berdasarkan kolom kunci tertentu.
 - Penggunaan metode left join untuk menyertakan semua baris dari dataframe kiri (pertama) dan baris yang cocok dari dataframe kanan (kedua).
 - Spesifikasi kunci penggabungan dengan parameter on='movieId' untuk menggabungkan berdasarkan ID film.
 
 3. Pembersihan Data Missing Values:
-- Penggunaan fungsi isnull() untuk mengidentifikasi nilai yang hilang (NaN).
-- Penggunaan fungsi dropna() untuk menghapus baris yang memiliki nilai kosong.
+- Penggunaan fungsi ```isnull()``` untuk mengidentifikasi nilai yang hilang (NaN).
+- Penggunaan fungsi ```dropna()``` untuk menghapus baris yang memiliki nilai kosong.
 
 4. Pengurutan dan Penghapusan Duplikat:
-- Penggunaan fungsi sort_values() untuk mengurutkan dataframe berdasarkan kolom tertentu.
-- Penggunaan fungsi drop_duplicates() untuk menghapus baris yang memiliki nilai yang sama dalam kolom tertentu.
+- Penggunaan fungsi ```sort_values()``` untuk mengurutkan dataframe berdasarkan kolom tertentu.
+- Penggunaan fungsi ```drop_duplicates()``` untuk menghapus baris yang memiliki nilai yang sama dalam kolom tertentu.
 
 5. Konversi Data Series menjadi List:
-- Penggunaan metode .tolist() pada data series untuk mengonversinya menjadi list.
+- Penggunaan metode ```.tolist()``` pada data series untuk mengonversinya menjadi list.
 
 6. Membuat Dictionary:
-- Penggunaan fungsi pd.DataFrame() untuk membuat dataframe baru dari kolom-kolom.
-- Penggunaan fungsi .to_dict() pada dataframe untuk mengonversinya menjadi dictionary.
+- Penggunaan fungsi ```pd.DataFrame()``` untuk membuat dataframe baru dari kolom-kolom.
+- Penggunaan fungsi ```.to_dict()``` pada dataframe untuk mengonversinya menjadi dictionary.
   
 semua tahapan diatas dilakukan supaya data dapat dengan mudah di jalankan dengan model yang akan digunakan dan mendapatkan hasil yang cukup baik dan efisien.
 
@@ -120,6 +120,8 @@ Dimasa lalu user yang menyukai film dibawah ini
 |---:|-----------:|-----------------------------:|----------------|
 |  8 |         17 | Sense and Sensibility (1995) | Drama\|Romance | 
 
+Tabel 1.1
+
 Mendapatkan hasil top 5 film rekomendasi untuk user yang menyukai film tersebut yaitu :
 |            |    movie_name                                     |  genre         |   
 |-----------:|--------------------------------------------------:|---------------:|
@@ -127,23 +129,24 @@ Mendapatkan hasil top 5 film rekomendasi untuk user yang menyukai film tersebut 
 |      1     |                            Far from Heaven (2002) | Drama\|Romance |  
 |      2     |                          Nicholas Nickleby (2002) | Drama\|Romance |  
 |      3     |                                        Gia (1998) | Drama\|Romance |  
-|      4     |               Talk to Her (Hable con Ella) (2002) | Drama\|Romance |  
+|      4     |               Talk to Her (Hable con Ella) (2002) | Drama\|Romance |
+
+Tabel 1.2
 
 Berdasarkan hasil rekomendasi sistem terhadap user yang menyukai film Sense and Sensibility (1995), sistem akan menampilkan film yang sejenis dilihat dari genre filmnya yang sama.
 
 ## Evaluation
-Matriks yang digunakan dalam proyek sistem rekomendasi film ini adalah matriks cosine similiarity. Matriks cosine similarity merupakan representasi matematis dari kesamaan antara dua dokumen (dalam hal ini, film) berdasarkan cosine similarity. Matriks ini dihasilkan dengan menghitung cosine similarity antara setiap pasangan film dalam dataset film.
+Hasil dari Top-5 rekomendasi film(Tabel 1.2) menggunakan cosine similiarity dengan menggunakan key movie_name dan genre dengan inputan 'Sense and Sensibility (1995)' dengan genre yang ditampilkan yaitu Drama|Romance (Tabel 1.1). berdasarkan rekomendasi menampilkan  film dengan genre yang sama dari kelima film yang direkomendasikan, hal ini menunjukkan bahwa precision sistem rekomendasi berbasis content-based yang telah dibuat berhasil mencapai 5/5 atau 100%.
 
-Peran dalam Content-Based Filtering:
+Rumus dari precision yang digunakan dalam mengukur metrik evaluasi :
 
-Dalam sistem rekomendasi film berbasis content-based, matriks cosine similarity digunakan untuk:
-- Menemukan film yang serupa: Film dengan nilai cosine similarity tinggi dianggap memiliki konten yang serupa dan direkomendasikan kepada pengguna.
-- Memprediksi rating pengguna: Nilai cosine similarity dapat digunakan untuk memprediksi kemungkinan pengguna menyukai film yang belum pernah ditontonnya.
-Rumus:
-
-
-
-Proyek ini dinilai berhasil dalam membuat rekomendasi film kepada user menggunakan data masa lalu dengan menggunakan matrix cosine similiarity, dengan mengetahui bahwa user menyukai suatu film maka sistem dapat merekomendasikan film film yang memiliki kesamaan dengan film yang disukai user tersebut.
+$$Precision= Total item yang direkomendasikan/Jumlah item relevan yang direkomendasikan$$
+dimana :
+- Jumlah item relevan yang direkomendasikan: Ini adalah jumlah item yang benar-benar relevan atau sesuai dengan preferensi atau kebutuhan pengguna di antara semua item yang direkomendasikan oleh sistem. Misalnya, jika dari 10 item yang direkomendasikan, 5 di antaranya relevan dengan preferensi pengguna, maka jumlah item relevan yang direkomendasikan adalah 5.
+- Total item yang direkomendasikan: Ini adalah jumlah total item yang diberikan sebagai rekomendasi oleh sistem. Dalam contoh sebelumnya, jika sistem merekomendasikan 10 item kepada pengguna, maka total item yang direkomendasikan adalah 10.
+                 
+​
+Proyek ini dinilai berhasil dalam membuat rekomendasi film kepada user menggunakan data masa lalu dengan menggunakan metrik evaluasi precission, dengan mengetahui bahwa user menyukai suatu film maka sistem dapat merekomendasikan film film yang memiliki kesamaan dengan film yang disukai user tersebut.
 
 ## References
 [1] Adomavicius, G., & Tuzhilin, A. (2005). Toward the next generation of recommender systems: A survey of the state-of-the-art and possible extensions. IEEE transactions on knowledge and data engineering, 17(6), 734-749.                    
