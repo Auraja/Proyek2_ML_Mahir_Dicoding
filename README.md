@@ -25,22 +25,47 @@ Pentingnya Proyek Sistem Rekomendasi Content-Based:
 
 ### Problem Statements
 
-Bagaimana cara efektif dalam merekomendasikan film kepada banyak orang hanya dengan menggunakan data aktivitas masa lalu terkait dengan film?
+Bagaimana cara efektif dalam merekomendasikan film kepada banyak orang hanya dengan menggunakan data aktivitas masa lalu terkait dengan film menggunakan teknik content-based filtering?
 
 ### Goals
 
-Solusi yang dapat diberikan ada dengan membuat sistem rekomedasi berbasis content filtering, user dapat dengan mudah mendapatkan rekomendasi film dari model proyek machine learning ini.
-
+Membuat sistem rekomendasi mengenai buku pada aplikasi toko buku menggunakan teknik Content-Based filtering.
 
 
 ## Data Understanding
 Dataset yang digunakan pada proyek kali ini terdiri dari 4 Dataset yaitu links.csv, movies.csv, ratings.csv, tags.csv dengan judul [Movie Lens Small Latest Dataset] (https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset)
 
 Variabel-variabel pada Movie Lens Small Latest Dataset adalah sebagai berikut:
-- Links: Daftar tautan film.
-- Movies: Daftar film yang tersedia.
-- Ratings: Daftar penilaian yang diberikan pengguna terhadap film.
-- Tags: Daftar kata kunci dari film.
+
+Links: Daftar tautan film.
+- Terdapat 9742 baris dan 3 kolom.
+- Kolomnya adalah movieId, imdbId, dan tmdbId.
+- movieId adalah ID unik untuk setiap film.
+- imdbId adalah ID IMDb untuk setiap film.
+- tmdbId adalah ID TMDb untuk setiap film.
+  
+Movies: Daftar film yang tersedia.                                    
+- Terdapat 9742 baris dan 3 kolom.
+- Kolomnya adalah movieId, title, dan genres.
+- movieId adalah ID unik untuk setiap film.
+- title adalah judul film.
+- genres adalah genre-genre yang terkait dengan film tersebut.
+  
+Ratings: Daftar penilaian yang diberikan pengguna terhadap film.                                 
+- Terdapat 100836 baris dan 4 kolom.
+- Kolomnya adalah userId, movieId, rating, dan timestamp.
+- userId adalah ID pengguna yang memberi penilaian.
+-  movieId adalah ID unik untuk setiap film.
+- rating adalah penilaian yang diberikan oleh pengguna untuk film tersebut.
+- timestamp adalah waktu ketika penilaian diberikan.
+  
+Tags: Daftar kata kunci dari film.                     
+- Terdapat 3683 baris dan 4 kolom.
+- Kolomnya adalah userId, movieId, tag, dan timestamp.
+- userId adalah ID pengguna yang memberi tag.
+- movieId adalah ID unik untuk setiap film.
+- tag adalah kata kunci yang terkait dengan film tersebut.
+- timestamp adalah waktu ketika tag diberikan.
 
 Berdasaarkan pengolahan data lebih lanjut hasil menunjukan bahwa rating dalam dataset ratings memiliki skala 0.5 hingga 5.0 dan didalam dataset links dan movies memiliki kesamaan dalam movieId
 
