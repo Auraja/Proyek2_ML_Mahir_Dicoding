@@ -88,9 +88,9 @@ Boxplot menunjukkan bahwa terdapat korelasi yang signifikan antara genre film da
 Dalam proyek ini, dilakukan beberapa tahapan persiapan data untuk mempersiapkan data untuk analisis dan pemrosesan selanjutnya. 
 
 1. Penggabungan Seluruh MovieID dan UserID:
-- Penggunaan fungsi ```np.concatenate()``` untuk menggabungkan array yang berbeda menjadi satu.
-- Penggunaan fungsi ```np.sort()``` untuk mengurutkan array.
-- Penggunaan fungsi ```np.unique()``` untuk menghapus data yang duplikat.
+- Penggunaan fungsi ```np.concatenate()``` untuk menggabungkan array yang berbeda menjadi satu pada variable movie_all dan user_all.
+- Penggunaan fungsi ```np.sort()``` untuk mengurutkan array pada variable movie_all dan user_all.
+- Penggunaan fungsi ```np.unique()``` untuk menghapus data yang duplikat variable movie_all yang menghasilkan nilai unik movieId sebanyak 9742 film dan user_all yang menghasilkan nilai unik userId sebanyak 610 user.
 
 2. Penggabungan DataFrame dengan Metode Join:
 - Menggunakan fungsi ```pd.merge()``` untuk menggabungkan dataframe berdasarkan kolom kunci tertentu.
@@ -99,18 +99,18 @@ Dalam proyek ini, dilakukan beberapa tahapan persiapan data untuk mempersiapkan 
 
 3. Pembersihan Data Missing Values:
 - Penggunaan fungsi ```isnull()``` untuk mengidentifikasi nilai yang hilang (NaN).
-- Penggunaan fungsi ```dropna()``` untuk menghapus baris yang memiliki nilai kosong.
+- Penggunaan fungsi ```dropna()``` untuk menghapus baris yang memiliki nilai kosong yaitu tag yang berjumlah 52549 menjadikan data dari 285762 rows menjadi 233213 rows, hal ini bertujuan membuat data bersih dari anomali yang nantinya mempengaruhi hasil dari sistem rekomendasi yang akan dibangun.
 
 4. Pengurutan dan Penghapusan Duplikat:
-- Penggunaan fungsi ```sort_values()``` untuk mengurutkan dataframe berdasarkan kolom tertentu.
-- Penggunaan fungsi ```drop_duplicates()``` untuk menghapus baris yang memiliki nilai yang sama dalam kolom tertentu.
+- Penggunaan fungsi ```sort_values()``` untuk mengurutkan dataframe berdasarkan kolom movieId pada variabel preparation.
+- Penggunaan fungsi ```drop_duplicates()``` untuk menghapus kolom movieId dengan nilai duplikat dari informasi np.unique() sebelumnya terdapat 1554 movieId unik jadi setelah dihapus duplikat data tetap berjumlah 1554 nilai.
 
 5. Konversi Data Series menjadi List:
 - Penggunaan metode ```.tolist()``` pada data series untuk mengonversinya menjadi list.
 
 6. Membuat Dictionary:
 - Penggunaan fungsi ```pd.DataFrame()``` untuk membuat dataframe baru dari kolom-kolom.
-- Penggunaan fungsi ```.to_dict()``` pada dataframe untuk mengonversinya menjadi dictionary.
+- Penggunaan fungsi ```.to_dict()``` pada dataframe untuk mengonversinya menjadi dictionary yang berisi id, movie_name, dan genre.
   
 semua tahapan diatas dilakukan supaya data dapat dengan mudah di jalankan dengan model yang akan digunakan dan mendapatkan hasil yang cukup baik dan efisien.
 
