@@ -5,7 +5,8 @@
 Sistem Rekomendasi Movie Berbasis Content-Based                           
 Ledakan Konten Film Industri film mengalami pertumbuhan pesat dalam beberapa tahun terakhir, menghasilkan banyak film baru di berbagai genre dan platform. Hal ini, meskipun menyenangkan bagi pecinta film, dapat membuat pengguna kesulitan menemukan film yang sesuai dengan minat mereka. Adomavicius dan Tuzhilin (2005) menyatakan bahwa "tantangan utama dalam sistem rekomendasi adalah membantu pengguna menemukan informasi yang relevan dalam lautan data yang berlimpah" ([1]).
 
-Keterbatasan Sistem Rekomendasi Saat Ini: Sistem rekomendasi film yang ada saat ini, seperti Netflix dan Rotten Tomatoes, banyak yang menggunakan metode collaborative filtering. Sistem ini merekomendasikan film berdasarkan preferensi pengguna lain dengan selera yang mirip. Namun, collaborative filtering memiliki beberapa keterbatasan:
+Keterbatasan Sistem Rekomendasi Saat Ini         
+Sistem rekomendasi film yang ada saat ini, seperti Netflix dan Rotten Tomatoes, banyak yang menggunakan metode collaborative filtering. Sistem ini merekomendasikan film berdasarkan preferensi pengguna lain dengan selera yang mirip. Namun, collaborative filtering memiliki beberapa keterbatasan:
 - Cold start problem: Sistem tidak dapat memberikan rekomendasi yang akurat bagi pengguna baru karena belum memiliki data preferensi mereka.
 - Data sparsity: Sulit untuk mendapatkan data rating yang lengkap dari semua pengguna.
 - Bubble filter: Pengguna hanya direkomendasikan film yang mirip dengan film yang pernah mereka tonton sebelumnya, sehingga membatasi eksplorasi film baru.
