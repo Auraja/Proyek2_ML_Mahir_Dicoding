@@ -102,7 +102,18 @@ semua tahapan diatas dilakukan supaya data dapat dengan mudah di jalankan dengan
 
 ## Modeling
 
-Model yang digunakan pada proyek kali ini adalah Content Based Filtering dengan menghitung derajat kesamaan dalam data yang sudah dijadikan tf_idf matrix
+Model yang digunakan pada proyek kali ini dengan menghitung derajat kesamaan dalam data yang sudah dijadikan tf_idf matrix
+Model cosine similarity cocok untuk content-based filtering pada dataset film karena dapat mengukur kemiripan antara vektor fitur film, yang berguna untuk memahami konten film seperti judul, genre, dan tag. Metode ini efisien secara komputasi, skalabel untuk dataset besar, dan dapat mengatasi data yang sparse. Dengan memanfaatkan informasi kaya dari dataset film dan kemampuan cosine similarity, model ini dapat memberikan rekomendasi yang relevan dan personalisasi kepada pengguna berdasarkan preferensi konten mereka.   
+
+Cosine similarity dihitung dengan rumus berikut:
+
+$$cosine_similarity(x, y) = (x * y) / ||x|| * ||y||$$
+dimana:
+- x dan y adalah vektor yang mewakili dua film.
+- x * y adalah perkalian dot antara vektor x dan y.
+- ||x|| dan ||y|| adalah norma Euclidean dari vektor x dan y.
+
+
 Hasil dari Content Based :
 Dimasa lalu user yang menyukai film dibawah ini
 |    |   id       |  movie_name                  |  genre         |   
@@ -130,13 +141,7 @@ Dalam sistem rekomendasi film berbasis content-based, matriks cosine similarity 
 - Memprediksi rating pengguna: Nilai cosine similarity dapat digunakan untuk memprediksi kemungkinan pengguna menyukai film yang belum pernah ditontonnya.
 Rumus:
 
-Cosine similarity dihitung dengan rumus berikut:
 
-$$cosine_similarity(x, y) = (x * y) / ||x|| * ||y||$$
-dimana:
-- x dan y adalah vektor yang mewakili dua film.
-- x * y adalah perkalian dot antara vektor x dan y.
-- ||x|| dan ||y|| adalah norma Euclidean dari vektor x dan y.
 
 Proyek ini dinilai berhasil dalam membuat rekomendasi film kepada user menggunakan data masa lalu dengan menggunakan matrix cosine similiarity, dengan mengetahui bahwa user menyukai suatu film maka sistem dapat merekomendasikan film film yang memiliki kesamaan dengan film yang disukai user tersebut.
 
