@@ -3,24 +3,24 @@
 ## Project Overview
    
 Sistem Rekomendasi Movie Berbasis Content-Based                           
-Ledakan Konten Film Industri film mengalami pertumbuhan pesat dalam beberapa tahun terakhir, menghasilkan banyak film baru di berbagai genre dan platform. Hal ini, meskipun menyenangkan bagi pecinta film, dapat membuat pengguna kesulitan menemukan film yang sesuai dengan minat mereka. Adomavicius dan Tuzhilin (2005) menyatakan bahwa "tantangan utama dalam sistem rekomendasi adalah membantu pengguna menemukan informasi yang relevan dalam lautan data yang berlimpah" ([1]).
+Ledakan Konten Film Industri film mengalami pertumbuhan pesat dalam beberapa tahun terakhir, menghasilkan banyak film baru di berbagai genre dan platform. Hal ini, meskipun menyenangkan bagi pecinta film, dapat membuat pengguna kesulitan menemukan film yang sesuai dengan minat pengguna. Adomavicius dan Tuzhilin (2005) menyatakan bahwa "tantangan utama dalam sistem rekomendasi adalah membantu pengguna menemukan informasi yang relevan dalam lautan data yang berlimpah" ([1]).
 
 Keterbatasan Sistem Rekomendasi Saat Ini         
 Sistem rekomendasi film yang ada saat ini, seperti Netflix dan Rotten Tomatoes, banyak yang menggunakan metode collaborative filtering. Sistem ini merekomendasikan film berdasarkan preferensi pengguna lain dengan selera yang mirip. Namun, collaborative filtering memiliki beberapa keterbatasan:
-- Cold start problem: Sistem tidak dapat memberikan rekomendasi yang akurat bagi pengguna baru karena belum memiliki data preferensi mereka.
+- Cold start problem: Sistem tidak dapat memberikan rekomendasi yang akurat bagi pengguna baru karena belum memiliki data preferensi pengguna.
 - Data sparsity: Sulit untuk mendapatkan data rating yang lengkap dari semua pengguna.
-- Bubble filter: Pengguna hanya direkomendasikan film yang mirip dengan film yang pernah mereka tonton sebelumnya, sehingga membatasi eksplorasi film baru.
+- Bubble filter: Pengguna hanya direkomendasikan film yang mirip dengan film yang pernah pengguna tonton sebelumnya, sehingga membatasi eksplorasi film baru.
 - Potensi Sistem Rekomendasi Content-Based: Sistem rekomendasi content-based menawarkan solusi untuk mengatasi keterbatasan tersebut. Sistem ini merekomendasikan film berdasarkan analisis konten film, seperti genre, aktor, sutradara, dan deskripsi plot, dibandingkan -dengan preferensi pengguna lain. Lops, de Gemmis, dan Semeraro (2011) menjelaskan bahwa sistem content-based "menggunakan informasi tentang item yang direkomendasikan (misalnya, film, buku, musik) untuk memprediksi apakah pengguna akan menyukainya" ([2]).
 
 Sistem content-based memiliki beberapa keuntungan:
 - Mampu memberikan rekomendasi bagi pengguna baru.
 - Lebih efisien dalam penggunaan data.
-- Membantu pengguna menemukan film baru di luar genre favorit mereka. Schafer, Konstan, dan Riedl (2001) mengemukakan bahwa sistem content-based "dapat membantu pengguna menemukan item yang tidak mereka ketahui sebelumnya, tetapi kemungkinan besar mereka akan menyukainya" ([3]).
+- Membantu pengguna menemukan film baru di luar genre favorit pengguna. Schafer, Konstan, dan Riedl (2001) mengemukakan bahwa sistem content-based "dapat membantu pengguna menemukan item yang tidak pengguna ketahui sebelumnya, tetapi kemungkinan besar pengguna akan menyukainya" ([3]).
 
 Pentingnya Proyek Sistem Rekomendasi Content-Based:
-- Meningkatkan pengalaman pengguna: Sistem ini membantu pengguna menemukan film yang sesuai dengan minat mereka dengan lebih mudah dan efisien.
+- Meningkatkan pengalaman pengguna: Sistem ini membantu pengguna menemukan film yang sesuai dengan minat pengguna dengan lebih mudah dan efisien.
 - Meningkatkan personalisasi: Sistem ini dapat memberikan rekomendasi yang lebih personal dan sesuai dengan preferensi individual pengguna.
-- Membantu penemuan film baru: Sistem ini dapat membantu pengguna menemukan film baru di luar genre favorit mereka dan memperluas wawasan film mereka.
+- Membantu penemuan film baru: Sistem ini dapat membantu pengguna menemukan film baru di luar genre favorit pengguna dan memperluas wawasan film pengguna.
 
 ## Business Understanding
 
@@ -70,6 +70,19 @@ Tags: Daftar kata kunci dari film.
 
 Berdasaarkan pengolahan data lebih lanjut hasil menunjukan bahwa rating dalam dataset ratings memiliki skala 0.5 hingga 5.0 dan didalam dataset links dan movies memiliki kesamaan dalam movieId
 
+
+![image](https://github.com/Auraja/Proyek2_ML_Mahir_Dicoding/assets/116571074/83f61304-c5ff-448f-96ba-fcfc97a98602)               
+Gambar 1.1         
+Diagram bar tersebut mengindikasikan bahwa distribusi nilai rating terjadi secara merata dalam rentang skala 0,5 hingga 5, dengan puncak distribusi terjadi pada kisaran nilai 4.
+
+![image](https://github.com/Auraja/Proyek2_ML_Mahir_Dicoding/assets/116571074/ce24b239-ed17-4c60-a46c-c02364e8f211)               
+Gambar 1.2            
+Diagram bar menunjukkan bahwa genre drama memiliki jumlah film terbanyak, diikuti oleh genre lainnya. Selain itu, terdapat film yang tidak memiliki genre, yang dapat menjadi anomali dalam data dan memengaruhi kinerja model yang akan dibuat. Oleh karena itu, diperlukan pembersihan data sebelum model dibangun untuk mengatasi anomali tersebut.
+
+![image](https://github.com/Auraja/Proyek2_ML_Mahir_Dicoding/assets/116571074/cd3077ff-e6a7-46c7-84a1-ae76ce6d86b2)         
+Gambar 1.3         
+Boxplot menunjukkan bahwa terdapat korelasi yang signifikan antara genre film dan nilai rating, terutama pada genre documentary dan film-noir. Kedua genre tersebut cenderung mendapatkan nilai rating yang tinggi, sementara genre lainnya memiliki persebaran nilai rating yang hampir seragam.
+
 ## Data Preparation
 
 Dalam proyek ini, dilakukan beberapa tahapan persiapan data untuk mempersiapkan data untuk analisis dan pemrosesan selanjutnya. 
@@ -104,7 +117,7 @@ semua tahapan diatas dilakukan supaya data dapat dengan mudah di jalankan dengan
 ## Modeling
 
 Model yang digunakan pada proyek kali ini dengan menghitung derajat kesamaan dalam data yang sudah dijadikan tf_idf matrix
-Model cosine similarity cocok untuk content-based filtering pada dataset film karena dapat mengukur kemiripan antara vektor fitur film, yang berguna untuk memahami konten film seperti judul, genre, dan tag. Metode ini efisien secara komputasi, skalabel untuk dataset besar, dan dapat mengatasi data yang sparse. Dengan memanfaatkan informasi kaya dari dataset film dan kemampuan cosine similarity, model ini dapat memberikan rekomendasi yang relevan dan personalisasi kepada pengguna berdasarkan preferensi konten mereka.   
+Model cosine similarity cocok untuk content-based filtering pada dataset film karena dapat mengukur kemiripan antara vektor fitur film, yang berguna untuk memahami konten film seperti judul, genre, dan tag. Metode ini efisien secara komputasi, skalabel untuk dataset besar, dan dapat mengatasi data yang sparse. Dengan memanfaatkan informasi kaya dari dataset film dan kemampuan cosine similarity, model ini dapat memberikan rekomendasi yang relevan dan personalisasi kepada pengguna berdasarkan preferensi konten pengguna.   
 
 Cosine similarity dihitung dengan rumus berikut:
 
