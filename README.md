@@ -72,10 +72,31 @@ Berdasaarkan pengolahan data lebih lanjut hasil menunjukan bahwa rating dalam da
 ## Data Preparation
 
 Dalam proyek ini, dilakukan beberapa tahapan persiapan data untuk mempersiapkan data untuk analisis dan pemrosesan selanjutnya. 
-- Dilakukan penggabungan dengan dataset lain kemudian data gabungan dibersihakan jika terjadi data yang tidak normal dilakukan secara terus menerus hingga data bersih.
-- Mengkonversi data yang sudah bersih yang sudah digabungkan menjadi list, data yang dipilih untuk di konversi menjadi list adalah movieId, title, dan genres.
-- Data yang sudah di konversikan menjadi list dibuat kamus supaya mempermudah model dalam membacanya.
-- TF_IDF juga dilakukan pada preparation data yang sudah menjadi list sehingga data diubah menjadi bentuk matriks yang akan digunakan dalam model.
+
+1. Penggabungan Seluruh MovieID dan UserID:
+- Penggunaan fungsi np.concatenate() untuk menggabungkan array yang berbeda menjadi satu.
+- Penggunaan fungsi np.sort() untuk mengurutkan array.
+- Penggunaan fungsi np.unique() untuk menghapus data yang duplikat.
+
+2. Penggabungan DataFrame dengan Metode Join:
+- Menggunakan fungsi pd.merge() untuk menggabungkan dataframe berdasarkan kolom kunci tertentu.
+- Penggunaan metode left join untuk menyertakan semua baris dari dataframe kiri (pertama) dan baris yang cocok dari dataframe kanan (kedua).
+- Spesifikasi kunci penggabungan dengan parameter on='movieId' untuk menggabungkan berdasarkan ID film.
+
+3. Pembersihan Data Missing Values:
+- Penggunaan fungsi isnull() untuk mengidentifikasi nilai yang hilang (NaN).
+- Penggunaan fungsi dropna() untuk menghapus baris yang memiliki nilai kosong.
+
+4. Pengurutan dan Penghapusan Duplikat:
+- Penggunaan fungsi sort_values() untuk mengurutkan dataframe berdasarkan kolom tertentu.
+- Penggunaan fungsi drop_duplicates() untuk menghapus baris yang memiliki nilai yang sama dalam kolom tertentu.
+
+5. Konversi Data Series menjadi List:
+- Penggunaan metode .tolist() pada data series untuk mengonversinya menjadi list.
+
+6. Membuat Dictionary:
+- Penggunaan fungsi pd.DataFrame() untuk membuat dataframe baru dari kolom-kolom.
+- Penggunaan fungsi .to_dict() pada dataframe untuk mengonversinya menjadi dictionary.
   
 semua tahapan diatas dilakukan supaya data dapat dengan mudah di jalankan dengan model yang akan digunakan dan mendapatkan hasil yang cukup baik dan efisien.
 
